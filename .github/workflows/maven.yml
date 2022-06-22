@@ -2,7 +2,7 @@ name: create push request workflow
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
