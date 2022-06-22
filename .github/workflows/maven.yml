@@ -21,7 +21,7 @@ jobs:
       uses: whelk-io/maven-settings-xml-action@v20
       with:
         repositories: '[{ "id": "github", "url": "https://github.com/priyankaj3w/GitWorkflow" }]'
-        servers: '[{ "id": "github", "username": "juyal.priyanka94@gmail.com", "password": "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" }]'
+        servers: '[{ "id": "github", "username": "juyal.priyanka94@gmail.com", "password": "Priyapj@94" }]'
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
