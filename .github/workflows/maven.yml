@@ -43,8 +43,8 @@ jobs:
       run: mvn install
     - uses: fusion-engineering/setup-git-credentials@v2
       with:
-          credentials: ${{secrets.GIT_CREDENTIALS}}
-    - name: Publish to GitHub Packages
+        credentials: ${{secrets.GIT_CREDENTIAL}}
+    - name: Deploy Maven
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
