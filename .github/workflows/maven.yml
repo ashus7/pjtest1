@@ -1,8 +1,8 @@
-name: Bump version
+name: create push request workflow
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
