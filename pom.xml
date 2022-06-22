@@ -25,7 +25,7 @@
 		    <updatePolicy>always</updatePolicy>
 		</snapshots>
 	    </repository>
-	</<distributionManagement>>
+	</<distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
