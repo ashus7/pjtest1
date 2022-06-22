@@ -6,16 +6,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
+    steps:  
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
     - name: Bump version
       uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: false
-  
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: '0'
+      id: tag
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v20
       with:
@@ -30,7 +30,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Set Release version env variable
-      run: echo "RELEASE_VERSION=3.0" >> $GITHUB_ENV
+      run: echo "RELEASE_VERSION=4.0" >> $GITHUB_ENV
     - name: Set Package version
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
