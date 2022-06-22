@@ -15,6 +15,11 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+     <repository>
+            <id>github</id>
+      <name> Github repo</name>
+      <url>https://repo1.maven.org/maven2</url>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -27,4 +32,10 @@
     </pluginRepositories> 
 </profile>
 </profiles>
+  <servers>
+   <server>
+    <id>github</id>
+  <username>juyal.priyanka94@gmail.com</username>
+  <password>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</password>
+  
 </settings>
