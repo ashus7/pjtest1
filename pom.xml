@@ -16,6 +16,16 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+	<repositories>
+	    <repository>
+		<id>https://github.com/priyankaj3w/GitWorkflow</id>
+		<url>https://github.com/priyankaj3w/GitWorkflow/</url>
+		<snapshots>
+		    <enabled>true</enabled>
+		    <updatePolicy>always</updatePolicy>
+		</snapshots>
+	    </repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
