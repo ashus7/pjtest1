@@ -1,4 +1,4 @@
-name: create push request workflow
+name: create push request workflow mechanism
 on:
   push:
     branches:
