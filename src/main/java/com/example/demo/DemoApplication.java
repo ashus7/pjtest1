@@ -8,7 +8,8 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		//I just adding line
-		pringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);
+		System.out.println("Ashutosh ullu hai");
 	}
 
 }
