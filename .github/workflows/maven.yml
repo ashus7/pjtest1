@@ -13,9 +13,6 @@ jobs:
     - name: Bump version
       id: tag_version
       uses: anothrNick/github-tag-action@1.36.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WITH_V: true
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v20
       with:
