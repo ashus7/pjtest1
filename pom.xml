@@ -47,15 +47,7 @@
 		</plugins>
 	</build>
 
-<settings>  
-   <servers>  
-      <server>
-         <id>git</id>  
-         <username>juyal.priyanka94@gmail.com</username>  
-         <password>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</password>  
-      </server>   
-   </servers>
-</settings>	
+	
 	
 
 </project>
