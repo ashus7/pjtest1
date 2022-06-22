@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		//I jus adding line
+		//I just adding line
 		SpringApplication.run(DemoApplication.class, args);
 		System.out.println("Ashutosh ullu hai");
 	}
