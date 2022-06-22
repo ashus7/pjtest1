@@ -44,7 +44,7 @@ jobs:
     - name: Publish to GitHub Packages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: mvn --batch-mode deploy -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn --batch-mode deploy -s /home/runner/.m2/settings.xml
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
