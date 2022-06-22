@@ -41,10 +41,17 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: mvn install
+    - uses: fusion-engineering/setup-git-credentials@v2
+      with:
+          credentials: ${{secrets.GIT_CREDENTIALS}}
     - name: Publish to GitHub Packages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: mvn --batch-mode deploy -s /home/runner/.m2/settings.xml
+      run: |
+        export GIT_USER=${{secrets.GIT_USER}}
+        git config -- global user.name "$GIT_USER"
+        git config  --global user.email "juyal.priyanka94@gmail.com"       
+        mvn --batch-mode deploy 
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
