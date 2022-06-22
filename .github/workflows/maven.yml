@@ -50,7 +50,7 @@ jobs:
       run: |
         git config --global user.name "priyankaj3w"
         git config --global user.email "juyal.priyanka94@gmail.com"       
-        mvn --batch-mode deploy 
+        mvn --batch-mode deploy -DuniqueVersion=false -Dmaven.source.useDefaultManifestFile=true -DdeplyAtEnd=true -Dmaven.source.includePom=true -Dmaven.install.skip=true
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
