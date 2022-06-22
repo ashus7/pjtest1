@@ -20,9 +20,6 @@ jobs:
       uses: anothrNick/github-tag-action@1.17.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TAG_CONTEXT: branch
-        DEFAULT_BUMP: minor
-        WITH_V: false
     - name: Echo
       run: echo ${{ steps.tag.outputs.result }}
     - name: Set up JDK 11
