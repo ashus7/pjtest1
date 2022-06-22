@@ -15,7 +15,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: false
-      id: tag
+      id: new_tag
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v20
       with:
