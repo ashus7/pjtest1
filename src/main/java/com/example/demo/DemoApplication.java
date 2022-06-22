@@ -8,7 +8,7 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		//I just adding line
-		SpringApplication.run(DemoApplication.class, args);
+		pringApplication.run(DemoApplication.class, args);
 	}
 
 }
