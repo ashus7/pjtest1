@@ -16,6 +16,13 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+		<distributionManagement>
+ <repository>
+  <id>github</id>
+  <name>GitHub OWNER Apache Maven Packages</name>
+  <url>https://github.com/priyankaj3w/Maven-Repo</url>
+ </repository>
+</distributionManagement>
 	
 
 	<dependencies>
@@ -39,13 +46,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
- <repository>
-  <id>github</id>
-  <name>GitHub OWNER Apache Maven Packages</name>
-  <url>https://github.com/priyankaj3w/Maven-Repo</url>
- </repository>
-</distributionManagement>
+
 <settings>  
    <servers>  
       <server>
