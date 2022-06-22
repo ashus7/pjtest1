@@ -30,7 +30,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Set Release version env variable
-      run: echo "RELEASE_VERSION=4.0" >> $GITHUB_ENV
+      run: echo "RELEASE_VERSION=$steps.id.outputs.*" >> $GITHUB_ENV
     - name: Set Package version
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
