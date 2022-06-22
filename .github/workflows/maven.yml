@@ -49,7 +49,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         export GIT_USER=${{ secrets.GIT_USER }}
-        git config -- global user.name "$GIT_USER"
+        git config -- global user.name $GIT_USER
         git config  --global user.email "juyal.priyanka94@gmail.com"       
         mvn --batch-mode deploy 
     - name: Create Release
