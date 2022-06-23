@@ -45,6 +45,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: mvn install
    
+    - name: Deploy to GitHub
+      run: mvn --batch-mode -DuseGitHubPackages=true deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   
     - name: Release Creation
       id: create_release
       uses: actions/create-release@v1
