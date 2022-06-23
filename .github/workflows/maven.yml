@@ -48,13 +48,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       run: mvn install
-     
-    - run: mkdir artifact && cp target/*.jar artifact
-    
-    - uses: actions/upload-artifact@v2
-      with:
-       name: Package
-       path: artifact 
         
     - name: Release Creation
       id: create_release
