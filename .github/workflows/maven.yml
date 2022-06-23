@@ -1,4 +1,4 @@
-name: create push request workflow
+name: GIt Push Workflow 
 on:
   push:
     branches:
@@ -10,35 +10,42 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: '0'
-    - name: Bump version
+        
+    - name: Tag Identification
       id: tag_version
       uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
         DRY_RUN: true
-    - name: maven-settings-xml-action
+        
+    - name: Maven XML Settings File Creation
       uses: whelk-io/maven-settings-xml-action@v20
       with:
         repositories: '[{ "id": "github", "url": "https://github.com/priyankaj3w/Maven-Repo" }]'
         servers: '[{ "id": "github", "username": "priyankaj3w", "password": "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" }]'
+    
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+   
+    - name: Maven Build
       run: mvn -B package --file pom.xml
-    - name: Set Package version
+    
+    - name: Maven Set Package version
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: mvn versions:set -DnewVersion=${{ steps.tag_version.outputs.new_tag }}
-    - name: Publish to GitHub Packages
+    
+    - name: Maven Install
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: mvn install
-    - name: Create Release
+   
+    - name: Release Creation
       id: create_release
       uses: actions/create-release@v1
       env:
@@ -48,7 +55,8 @@ jobs:
         release_name: Release ${{ steps.tag_version.outputs.new_tag }}
         draft: false
         prerelease: false
-    - name: Bump version
+    
+    - name: Tag Creation
       uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
