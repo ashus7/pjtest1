@@ -48,10 +48,7 @@ jobs:
       with:
         credentials: ${{secrets.GIT_CREDENTIAL}}
     - name: Deploy Maven
-      run: |
-        git config --global user.name "priyankaj3w"
-        git config --global user.email "juyal.priyanka94@gmail.com"       
-        mvn -e deploy -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn -e deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
     - name: Create Release
