@@ -1,4 +1,4 @@
-name: Push request workflow mechanism
+name: create push request workflow
 on:
   push:
     branches:
@@ -6,68 +6,52 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: 
-      contents: read
-      packages: write 
     steps:  
-    
     - uses: actions/checkout@v2
       with:
         fetch-depth: '0'
-        server-id: github
-        settings-path: ${{ github.workspace }}
-        
-    - name: Tag Version Identification
+    - name: Bump version
       id: tag_version
       uses: anothrNick/github-tag-action@1.36.0
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
         DRY_RUN: true
-        
-    - name: Maven Settings XML Creation
+    - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v20
       with:
-        repositories: '[{ "id": "github", "url": "https://github.com/priyankaj3w/GitWorkflow" }]'
-        servers: '[{ "id": "git", "username": "priyankaj3w", "password": "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" }]'
-        output_file:  ${{ github.workspace }}/settings.xml
-        
+        repositories: '[{ "id": "github", "url": "https://github.com/priyankaj3w/Maven-Repo" }]'
+        servers: '[{ "id": "github", "username": "priyankaj3w", "password": "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" }]'
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-
-    - name: Maven set package version
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      run: mvn versions:set -DnewVersion=${{ steps.tag_version.outputs.new_tag }}
-
-    - name: Maven Build with package version
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+    - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Maven Install
+    - name: Set Package version
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: mvn versions:set -DnewVersion=${{ steps.tag_version.outputs.new_tag }}
+    - name: Publish to GitHub Packages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: mvn install
-        
-    - name: Release Creation
+    - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         release_name: Release ${{ steps.tag_version.outputs.new_tag }}
         draft: false
         prerelease: false
-        
-    - name: Tag Creation
+    - name: Bump version
       uses: anothrNick/github-tag-action@1.36.0
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
         CUSTOM_TAG: ${{ steps.tag_version.outputs.new_tag }}
 
