@@ -1,8 +1,9 @@
 name: GIt Push Workflow Mechanism
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+  release:
+    types: [created]
 jobs:
   build:
     runs-on: ubuntu-latest
