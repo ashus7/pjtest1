@@ -39,7 +39,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Maven Buil with package version
+    - name: Maven Build with package version
       env:
         GITHUB_TOKEN: ${{ github.token }}
       run: mvn versions:set -DnewVersion=${{ steps.tag_version.outputs.new_tag }} -B package --file pom.xml
@@ -48,6 +48,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       run: mvn install
+     
+    - run: mkdir artifact && cp target/*.jar artifact
+    
+    - uses: actions/upload-artifact@v2
+      with:
+       name: Package
+       path: artifact 
+        
     - name: Maven Deploy
       run: mvn -e deploy -s  ${{ github.workspace }}/settings.xml
       env:
