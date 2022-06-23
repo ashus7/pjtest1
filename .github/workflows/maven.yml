@@ -41,7 +41,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
       run: mvn install
-   
+      
+    - name: Maven Deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+      run: mvn deploy -s ${{ github.workspace }}\settings.xml
+         
     - name: Release Creation
       id: create_release
       uses: actions/create-release@v1
