@@ -56,11 +56,6 @@ jobs:
        name: Package
        path: artifact 
         
-    - name: Maven Deploy
-      run: mvn -e deploy -s  ${{ github.workspace }}/settings.xml
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-        
     - name: Release Creation
       id: create_release
       uses: actions/create-release@v1
