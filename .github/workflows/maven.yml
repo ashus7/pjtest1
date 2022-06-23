@@ -15,7 +15,7 @@ jobs:
         fetch-depth: '0'
         server-id: github
         settings-path: ${{ github.workspace }}
- - name: Bump version
+    - name: Bump version
       id: tag_version
       uses: anothrNick/github-tag-action@1.36.0
       env:
