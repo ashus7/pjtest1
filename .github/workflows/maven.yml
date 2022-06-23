@@ -36,6 +36,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
       run: mvn install
+      
+    - name: Maven Install
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+      run: mvn deploy
    
     - name: Release Creation
       id: create_release
