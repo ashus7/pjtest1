@@ -39,11 +39,15 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Maven set package version
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      run: mvn versions:set -DnewVersion=${{ steps.tag_version.outputs.new_tag }}
+
     - name: Maven Build with package version
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: mvn versions:set -DnewVersion=${{ steps.tag_version.outputs.new_tag }} -B package --file pom.xml
-      
+      run: mvn -B package --file pom.xml
     - name: Maven Install
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -53,7 +57,7 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         release_name: Release ${{ steps.tag_version.outputs.new_tag }}
