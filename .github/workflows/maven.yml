@@ -22,7 +22,7 @@ jobs:
     - name: Maven XML Settings File Creation
       uses: whelk-io/maven-settings-xml-action@v20
       with:
-        repositories: '[{ "id": "github", "url": "https://github.com/priyankaj3w/GitWorkflow }]'
+        repositories: '[{ "id": "github", "url": "https://github.com/priyankaj3w/GitWorkflow" }]'
         servers: '[{ "id": "github", "username": "priyankaj3w", "password": "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" }]'
     
     - name: Set up JDK 11
