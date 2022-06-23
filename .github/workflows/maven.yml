@@ -1,4 +1,4 @@
-name: GIt Push WorkfloW
+name: GIt Push Workflow
 on:
   push:
     branches:
